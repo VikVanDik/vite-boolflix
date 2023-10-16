@@ -3,35 +3,58 @@
 import axios from 'axios';
 import { store } from './data/store'
 import Wrapper from './components/Wrapper.vue';
+import Header from './components/Header.vue';
 
 export default {
   name: 'App',
 
   components : {
-    Wrapper
+    Wrapper,
+    Header
   },
 
   data (){
     return {
       store,
-      Wrapper
+      Wrapper,
+      Header
     }
   },
 
   methods : {
-    getApi (){
+    getApiMovie (){
       
-      axios.get(store.apiUrl)
+      axios.get(store.apiUrlMovie, {
+        params : {
+          query : store.inputToSearch
+        }
+      })
 
       .then (res => {
         store.movieList = res.data.results
         console.log(store.movieList);
       })
-    }
+    },
+
+    getApiTV (){
+      
+      axios.get(store.apiUrlTV, {
+        params : {
+          query : store.inputToSearch
+        }
+      })
+
+      .then (res => {
+        store.tvList = res.data.results
+        console.log(store.movieList);
+      })
+    },
+
   },
 
   mounted () {
-    this.getApi()
+    this.getApiMovie()
+    this.getApiTV()
   }
 }
 
@@ -40,12 +63,14 @@ export default {
 
 <template>
 
-  <div>
-    <Wrapper />
-  </div>
+  <Header @searchShow="getApiTV"/>
+  <Wrapper />
+  
   
 </template>
 
-<style >
+<style lang="scss">
+
+@use './scss/main.scss';
 
 </style>
