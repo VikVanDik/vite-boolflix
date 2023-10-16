@@ -2,13 +2,19 @@
 
 import axios from 'axios';
 import { store } from './data/store'
+import Wrapper from './components/Wrapper.vue';
 
 export default {
   name: 'App',
 
+  components : {
+    Wrapper
+  },
+
   data (){
     return {
-      store
+      store,
+      Wrapper
     }
   },
 
@@ -18,8 +24,8 @@ export default {
       axios.get(store.apiUrl)
 
       .then (res => {
-        movieList = res.data
-        console.log(this.movieList);
+        store.movieList = res.data.results
+        console.log(store.movieList);
       })
     }
   },
@@ -35,7 +41,7 @@ export default {
 <template>
 
   <div>
-    
+    <Wrapper />
   </div>
   
 </template>
