@@ -15,7 +15,7 @@ export default {
 <template>
 
   <div>
-    <input type="text" v-model="store.inputToSearch" @keyup.enter="$emit('searchShow')">
+    <input type="text" v-model.trim="store.apiParams.query" @keyup.enter="$emit('searchShow')">
     <button class="btn btn-success" @click="$emit('searchShow')">Cerca</button>
   </div>
   

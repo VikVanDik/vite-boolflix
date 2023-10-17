@@ -25,36 +25,22 @@ export default {
     getApiMovie (){
       
       axios.get(store.apiUrlMovie, {
-        params : {
-          query : store.inputToSearch
-        }
+        params : store.apiParams
       })
 
       .then (res => {
         store.movieList = res.data.results
         console.log(store.movieList);
       })
-    },
 
-    getApiTV (){
-      
-      axios.get(store.apiUrlTV, {
-        params : {
-          query : store.inputToSearch
-        }
-      })
-
-      .then (res => {
-        store.tvList = res.data.results
-        console.log(store.movieList);
+      .catch (err => {
+        console.log(err);
       })
     },
 
   },
 
   mounted () {
-    this.getApiMovie()
-    this.getApiTV()
   }
 }
 
@@ -63,7 +49,7 @@ export default {
 
 <template>
 
-  <Header @searchShow="getApiTV"/>
+  <Header @searchShow="getApiMovie"/>
   <Wrapper />
   
   
