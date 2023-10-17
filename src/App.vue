@@ -17,12 +17,13 @@ export default {
     return {
       store,
       Wrapper,
-      Header
+      Header,
+      message : "Cerca un film o una serie TV"
     }
   },
 
   methods : {
-    getApiMovie (type){
+    getApi (type){
       
       axios.get(store.apiUrl + type, {
         params : store.apiParams
@@ -32,6 +33,9 @@ export default {
         store[type] = res.data.results
         console.log(store.movie);
         console.log(store.tv);
+        if(store[type].length === 0) {
+          this.message = "Nessun risultato trovato"
+        }
       })
 
       .catch (err => {
@@ -40,13 +44,17 @@ export default {
     },
 
     searchShow (){
-      this.getApiMovie ('movie'),
-      this.getApiMovie ('tv')
-    }
+      this.getApi ('movie'),
+      this.getApi ('tv')
+      store.apiParams.query = ""
+    },
+
+   
 
   },
 
   mounted () {
+
   }
 }
 
@@ -56,8 +64,11 @@ export default {
 <template>
 
   <Header @searchShow="searchShow"/>
-  <Wrapper title="Film" type="movie"/>
-  <Wrapper title="Serie TV" type="tv"/>
+
+  <Wrapper v-if="store.movie.length > 0" title="Film" type="movie"/>
+  <Wrapper v-if="store.tv.length > 0" title="Serie TV" type="tv"/>
+
+  <div v-if="store.movie.length === 0 & store.tv.length === 0">{{ this.message }}</div>
   
   
 </template>

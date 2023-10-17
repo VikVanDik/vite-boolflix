@@ -17,9 +17,9 @@ export default {
   data() {
     return {
       store,
-      Card
+      Card,
     }
-  }
+  },
 }
 </script>
 
@@ -31,7 +31,8 @@ export default {
   
   <Card 
   v-for="item in store[type]" 
-  :key="item.id"/>
+  :key="item.id"
+  :itemObj="item"/>
 </template>
 
 
