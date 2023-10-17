@@ -33,9 +33,7 @@ export default {
         console.log(store.movieList);
       })
 
-      .catch (err => {
-        console.log(err);
-      })
+      
     },
 
   },
