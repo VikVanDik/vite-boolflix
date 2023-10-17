@@ -3,6 +3,11 @@ import { store } from '../data/store'
 
 export default {
   name : 'Wrapper',
+
+  props : {
+    title : String,
+    type : String
+  },
   
   data() {
     return {
@@ -14,14 +19,18 @@ export default {
 
 
 <template>
-  <div v-for="movie in store.movieList" :key="movie.id">
+  <div>
+    <h1>{{ title }}</h1>
+  </div>
+  
+  <div v-for="item in store[type]" :key="item.id">
     <ul>
-      <li>Titolo Originale {{ movie.original_title }}</li>
-      <li>Titolo {{ movie.title }}</li>
-      <li> {{ movie.vote_average }}</li>
-      <li v-if="movie.original_language === 'en'"><img src="/public/en.png" alt=""></li>
-      <li v-else-if="movie.original_language === 'it'"><img src="/public/it.png" alt=""></li>
-      <li v-else> {{ movie.original_language}}</li>
+      <li>Titolo Originale {{ item.original_title }}</li>
+      <li>Titolo {{ item.title }}</li>
+      <li> {{ item.vote_average }}</li>
+      <li v-if="item.original_language === 'en'"><img src="/public/en.png" alt=""></li>
+      <li v-else-if="item.original_language === 'it'"><img src="/public/it.png" alt=""></li>
+      <li v-else> {{ item.original_language}}</li>
     </ul>
   </div>
 </template>

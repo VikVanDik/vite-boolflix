@@ -22,19 +22,27 @@ export default {
   },
 
   methods : {
-    getApiMovie (){
+    getApiMovie (type){
       
-      axios.get(store.apiUrlMovie, {
+      axios.get(store.apiUrl + type, {
         params : store.apiParams
       })
 
       .then (res => {
-        store.movieList = res.data.results
-        console.log(store.movieList);
+        store[type] = res.data.results
+        console.log(store.movie);
+        console.log(store.tv);
       })
 
-      
+      .catch (err => {
+        console.log(err);
+      })
     },
+
+    searchShow (){
+      this.getApiMovie ('movie'),
+      this.getApiMovie ('tv')
+    }
 
   },
 
@@ -47,8 +55,9 @@ export default {
 
 <template>
 
-  <Header @searchShow="getApiMovie"/>
-  <Wrapper />
+  <Header @searchShow="searchShow"/>
+  <Wrapper title="Film" type="movie"/>
+  <Wrapper title="Serie TV" type="tv"/>
   
   
 </template>
