@@ -31,17 +31,19 @@ export default {
 
 <template>
   <div 
-  class="card movie-card " 
+  class="card movie-card" 
   style="width: 18rem;"
   >
-    <img v-if="!itemObj.poster_path" src="notFound.png" alt="Not found">
-    <img v-else :src="`https://image.tmdb.org/t/p/w342/${itemObj.poster_path}`" class="card-img-top" alt="...">
-    <div class="card-body">
+    
+      <img v-if="!itemObj.poster_path" src="notFound.png" alt="Not found">
+      <img v-else :src="`https://image.tmdb.org/t/p/w342/${itemObj.poster_path}`" class="card-img-top image" alt="...">
+    
+    <!-- <div class="card-body">
       <h5 class="card-title">{{ itemObj.original_title || itemObj.original_name }}</h5>
       <p class="card-text">Titolo: <br> {{ itemObj.title || itemObj.name}}</p>
       <p class="card-text" v-if="flags.includes(itemObj.original_language)"><img class="flag" :src="getFlag(itemObj.original_language)" alt="language"></p>
       <p class="card-text" v-else>{{ itemObj.original_language}}</p>
-      <p class="card-text">{{ getVote() }}</p>
+      <p class="card-text">{{ getVote }}</p>
       <div class="stars">
         <i 
         v-for="i in 5" 
@@ -52,7 +54,7 @@ export default {
       <div class="overview">
         <p class="card-text"> {{ itemObj.overview }}</p>
       </div>
-    </div>
+    </div> -->
   </div>
 
 </template>
@@ -60,8 +62,12 @@ export default {
 
 <style scoped>
 
+.image {
+  height: 430px;
+}
+
 .movie-card {
-  height: 800px;
+  height: 430px;
   overflow: hidden;
 }
 

@@ -34,7 +34,8 @@ export default {
       <Card 
       v-for="item in store[type]" 
       :key="item.id"
-      :itemObj="item"/>
+      :itemObj="item"
+      class=""/>
     </div>
   </main>
 </template>
