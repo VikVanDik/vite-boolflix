@@ -25,12 +25,12 @@ export default {
 
 
 <template>
-  <main >
+  <main>
     <div>
-      <h1>{{ title }}</h1>
+      <h1 class="m-3">{{ title }}</h1>
     </div>
     
-    <div class="d-flex flex-wrap">
+    <div class="d-flex flex-wrap container-cards">
       <Card 
       v-for="item in store[type]" 
       :key="item.id"
@@ -43,7 +43,19 @@ export default {
 
 <style scoped>
 main {
-  padding-top: 100px;
+  padding-top: 120px;
   background-color: #434343;
+
+}
+
+h1 {
+  color: black;
+  padding-left: 50px;
+}
+
+.container-cards {
+  width: 90%;
+  margin: 0 auto;
+  justify-content: center;
 }
 </style>

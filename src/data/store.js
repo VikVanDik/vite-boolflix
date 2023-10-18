@@ -9,6 +9,6 @@ export const store = reactive ({
   },
   movie : [],
   tv : [],
-  message : ''
-  
+  message : '',
+  selection : ''
 })

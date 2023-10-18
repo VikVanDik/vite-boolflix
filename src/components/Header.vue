@@ -18,9 +18,14 @@ export default {
     <a href="#" onclick="window.location.reload()">
       <img src="../assets/img/logo-boolflix.png" alt="Logo" class="m-3">
     </a> 
-    <div class="selection">
+    <div class="selection d-flex">
       <input class="m-3" type="text" v-model.trim="store.apiParams.query" @keyup.enter="$emit('searchShow')">
       <button class="btn btn-danger m-3" @click="$emit('searchShow')">Cerca</button>
+      <select class="form-select" aria-label="Default select example" v-model="store.selection" @change="$emit('selected')">
+        <option value="">Tutto</option>
+        <option value="movie">Film</option>
+        <option value="tv">Serie TV</option>
+      </select>
     </div>
   </header>
   
@@ -50,4 +55,9 @@ img {
   height: 60px;
 }
 
+select {
+  height: 30px;
+  margin-top: 20px;
+  line-height: 15px;
+}
 </style>

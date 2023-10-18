@@ -49,7 +49,10 @@ export default {
       store.apiParams.query = ""
     },
 
-   
+    selectArray () {
+      
+    }
+
 
   },
 
@@ -63,7 +66,9 @@ export default {
 
 <template class="background">
 
-  <Header @searchShow="searchShow"/>
+  <Header
+  @searchShow="searchShow"
+  @selected="selectArray"/>
 
   <Wrapper v-if="store.movie.length > 0" title="Film" type="movie"/>
   <Wrapper v-if="store.tv.length > 0" title="Serie TV" type="tv"/>
