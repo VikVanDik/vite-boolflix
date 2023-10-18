@@ -61,14 +61,14 @@ export default {
 </script>
 
 
-<template>
+<template class="background">
 
   <Header @searchShow="searchShow"/>
 
   <Wrapper v-if="store.movie.length > 0" title="Film" type="movie"/>
   <Wrapper v-if="store.tv.length > 0" title="Serie TV" type="tv"/>
 
-  <div v-if="store.movie.length === 0 & store.tv.length === 0">{{ this.message }}</div>
+  <div class="message p-5" v-if="store.movie.length === 0 & store.tv.length === 0">{{ this.message }}</div>
   
   
 </template>
@@ -77,4 +77,11 @@ export default {
 
 @use './scss/main.scss';
 
+ .message {
+    margin-top: 100px;
+    background-color: #434343;
+    height: calc(100vh - 100px);
+    font-size: 40px;
+    color: black;
+ }
 </style>
