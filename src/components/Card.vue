@@ -11,9 +11,16 @@ export default {
 
   data (){
     return {
-      store
+      store,
+      flags : ['en', 'it']
     }
   },
+  methods : {
+    
+    getFlag(img){
+      return new URL(`../../assets/img/${img}.png`, import.meta.url).href
+    }
+  }
 }
 </script>
 
@@ -28,8 +35,7 @@ export default {
     <div class="card-body">
       <h5 class="card-title">Titolo Originale {{ itemObj.original_title }}</h5>
       <p class="card-text">Titolo {{ itemObj.title }}</p>
-      <p class="card-text" v-if="itemObj.original_language === 'en'"><img src="/en.png" alt=""></p>
-      <p class="card-text" v-else-if="itemObj.original_language === 'it'"><img src="/it.png" alt=""></p>
+      <p class="card-text" v-if="flags.includes(itemObj.original_language)"><img :src="getFlag(itemObj.original_language)" alt="language"></p>
       <p class="card-text" v-else>{{ itemObj.original_language}}</p>
       <p class="card-text">{{ itemObj.vote_average }}</p>
     </div>
